@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="w3.css">
     <title>My Clinic</title>
+    <style>
+        .mycard {
+            max-width: 350px;
+            height: 400px;
+            margin: 10px;
+            text-align: justify;
+        }
+
+        body {
+            font-family: Garamond, serif;
+            font-size: larger;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,16 +29,18 @@
     <div class="w3-bar w3-teal">
         <a href="#about" class="w3-bar-item w3-button">Home</a>
         <a href="#services" class="w3-bar-item w3-button">Services</a>
+        <a href="#ourteam" class="w3-bar-item w3-button">Our Doctors</a>
+        <a href="#appoitment" class="w3-bar-item w3-button">Appoitment</a>
     </div>
 
     <!-- this section is for about us.  -->
     <div style="min-height:100vh;overflow-y: auto;">
         <div class="w3-container w3-row w3-card w3-margin" id="about">
+            <h3>About US</h3>
             <div class="w3-container w3-third w3-padding w3-hide-small  w3-center">
                 <img src="aboutus.jpg" style="height: 70%; max-width: 70%;">
             </div>
             <div class="w3-container w3-twothird">
-                <h3>About US</h3>
                 <p style="text-align: justify;">Founded in 2020 by Dr. Ali, MyClinic has been a cornerstone of the
                     Sintok community for 4 years, dedicated to providing patient-centered, comprehensive medical
                     services. Our modern facility in the heart of Sintok offers a comfortable environment equipped with
@@ -41,19 +56,17 @@
             </div>
         </div>
         <!-- to do services -->
-        <div id="services" class="w3-container w3-row w3-card w3-margin">
+        <div id="services" class="w3-container w3-row w3-card w3-margin ">
             <h3>Our Services</h3>
             <div class="w3-container w3-row w3-padding w3-center" style="margin: auto;">
-                <div class="w3-card w3-container w3-col"
-                    style="max-width: 350px;height: 400px;margin: 10px;;text-align: justify;text-align: justify;">
+                <div class="w3-card w3-container w3-col mycard ">
                     <h4>Primary Care</h4>
                     <p>Our primary care physicians are your first point of contact for managing your overall health and
                         well-being. From routine check-ups and preventive screenings to managing chronic conditions such
                         as diabetes, hypertension, and asthma, our primary care team is dedicated to keeping you healthy
                         and thriving.</p>
                 </div>
-                <div class="w3-card w3-container w3-col"
-                    style="max-width: 350px;height: 400px;margin: 10px;;text-align: justify;">
+                <div class="w3-card w3-container w3-col mycard">
                     <h4>Specialty Care</h4>
                     <p>In addition to primary care, MyClinic houses a team of board-certified specialists across various
                         medical disciplines. Whether you require expert cardiology care, dermatological treatments,
@@ -61,16 +74,14 @@
                         experienced specialists are here to provide personalized treatment plans tailored to your unique
                         needs.</p>
                 </div>
-                <div class="w3-card w3-container w3-col"
-                    style="max-width: 350px;height: 400px;margin: 10px;;text-align: justify;">
+                <div class="w3-card w3-container w3-col mycard">
                     <h4>Diagnostic Services</h4>
                     <p>With our state-of-the-art diagnostic facilities, we offer a wide range of imaging and laboratory
                         services to aid in accurate diagnosis and treatment planning. From X-rays and ultrasounds to
                         blood tests and genetic screenings, our advanced diagnostic capabilities ensure that you receive
                         prompt and accurate diagnoses, leading to better health outcomes.</p>
                 </div>
-                <div class="w3-card w3-container w3-col"
-                    style="max-width: 350px;height: 400px;margin: 10px;;text-align: justify;">
+                <div class="w3-card w3-container w3-col mycard">
                     <h4>Wellness Programs</h4>
                     <p>At MyClinic, we believe in proactive healthcare that focuses on prevention and lifestyle
                         management. Our wellness programs encompass health education, nutritional counseling, weight
@@ -78,16 +89,14 @@
                         to adopt healthier habits or manage existing health conditions more effectively, our wellness
                         programs are designed to empower you to live your best life.</p>
                 </div>
-                <div class="w3-card w3-container w3-col"
-                    style="max-width: 350px;height: 400px;margin: 10px;;text-align: justify;">
+                <div class="w3-card w3-container w3-col mycard">
                     <h4>Urgent Care</h4>
                     <p>For non-life-threatening medical issues that require immediate attention, MyClinic offers urgent
                         care services with extended hours to accommodate your needs. Our urgent care team provides
                         prompt evaluation and treatment for a wide range of acute illnesses and injuries, including flu
                         symptoms, minor fractures, lacerations, and infections.</p>
                 </div>
-                <div class="w3-card w3-container w3-col"
-                    style="max-width: 350px;height: 400px;margin: 10px;;text-align: justify;">
+                <div class="w3-card w3-container w3-col mycard">
                     <h4>Telemedicine</h4>
                     <p>Recognizing the importance of accessibility and convenience in modern healthcare, MyClinic offers
                         telemedicine services that allow you to consult with our healthcare providers remotely. Whether
@@ -98,11 +107,119 @@
 
             </div>
         </div>
+        <div id="ourteam" class="w3-container w3-row w3-card w3-margin ">
+            <h3>Meet Our Doctors</h3>
+            <div class="w3-container w3-row w3-padding w3-center" style="margin: auto;">
+                <div class="w3-card-4 w3-container w3-col mycard" style="height: 600px;">
+                    <h4>Dr. Johnson - Primary Care Physician</h4>
+                    <div class="w3-container w3-center">
+                        <img src="docicon.png" class="w3-container w3-center w3-image" style="height: 250px;">
+                    </div>
+                    <p style="overflow-x: hidden;overflow-y:auto; height: 220px;">Dr. Johnson is a board-certified
+                        primary care physician with over 15 years of
+                        experience. She is
+                        passionate about preventive medicine and believes in building strong relationships with her
+                        patients to provide personalized care. Dr. Johnson specializes in managing chronic
+                        conditions
+                        such as diabetes and hypertension, as well as promoting overall wellness through lifestyle
+                        interventions.</p>
+                </div>
+                <div class="w3-card-4 w3-container w3-col mycard" style="height: 600px;">
+                    <h4>Dr. Johnson - Primary Care Physician</h4>
+                    <div class="w3-container w3-center">
+                        <img src="docicon.png" class="w3-container w3-center w3-image" style="height: 250px;">
+                    </div>
+                    <p style="overflow-x: hidden;overflow-y:auto; height: 220px;">Dr. Johnson is a board-certified
+                        primary care physician with over 15 years of
+                        experience. She is
+                        passionate about preventive medicine and believes in building strong relationships with her
+                        patients to provide personalized care. Dr. Johnson specializes in managing chronic
+                        conditions
+                        such as diabetes and hypertension, as well as promoting overall wellness through lifestyle
+                        interventions.</p>
+                </div>
+                <div class="w3-card-4 w3-container w3-col mycard" style="height: 600px;">
+                    <h4>Dr. Johnson - Primary Care Physician</h4>
+                    <div class="w3-container w3-center">
+                        <img src="docicon.png" class="w3-container w3-center w3-image" style="height: 250px;">
+                    </div>
+                    <p style="overflow-x: hidden;overflow-y:auto; height: 220px;">Dr. Johnson is a board-certified
+                        primary care physician with over 15 years of
+                        experience. She is
+                        passionate about preventive medicine and believes in building strong relationships with her
+                        patients to provide personalized care. Dr. Johnson specializes in managing chronic
+                        conditions
+                        such as diabetes and hypertension, as well as promoting overall wellness through lifestyle
+                        interventions.</p>
+                </div>
+                <div class="w3-card-4 w3-container w3-col mycard" style="height: 600px;">
+                    <h4>Dr. Johnson - Primary Care Physician</h4>
+                    <div class="w3-container w3-center">
+                        <img src="docicon.png" class="w3-container w3-center w3-image" style="height: 250px;">
+                    </div>
+                    <p style="overflow-x: hidden;overflow-y:auto; height: 220px;">Dr. Johnson is a board-certified
+                        primary care physician with over 15 years of
+                        experience. She is
+                        passionate about preventive medicine and believes in building strong relationships with her
+                        patients to provide personalized care. Dr. Johnson specializes in managing chronic
+                        conditions
+                        such as diabetes and hypertension, as well as promoting overall wellness through lifestyle
+                        interventions.</p>
+                </div>
+                <div class="w3-card-4 w3-container w3-col mycard" style="height: 600px;">
+                    <h4>Dr. Johnson - Primary Care Physician</h4>
+                    <div class="w3-container w3-center">
+                        <img src="docicon.png" class="w3-container w3-center w3-image" style="height: 250px;">
+                    </div>
+                    <p style="overflow-x: hidden;overflow-y:auto; height: 220px;">Dr. Johnson is a board-certified
+                        primary care physician with over 15 years of
+                        experience. She is
+                        passionate about preventive medicine and believes in building strong relationships with her
+                        patients to provide personalized care. Dr. Johnson specializes in managing chronic
+                        conditions
+                        such as diabetes and hypertension, as well as promoting overall wellness through lifestyle
+                        interventions.</p>
+                </div>
+            </div>
+        </div>
 
-
-
+        <div id="appoitment" class="w3-container w3-row w3-card w3-margin">
+            <h3>Appointment</h3>
+            <div class="w3-third w3-container">
+                <h4>Book an Appointment:</h4>
+                <p style="text-align: justify;">At MyClinic, scheduling a visit has never been easier. With our
+                    convenient online booking system, you
+                    can book an appointment from the comfort of your own home or on the go. Simply visit our website or
+                    use
+                    our mobile app to choose a date and time that works best for you. Our intuitive interface allows you
+                    to
+                    select your preferred healthcare provider and specify the reason for your visit. Once your
+                    appointment
+                    is confirmed, you'll receive a confirmation email or text message with all the details you need.</p>
+            </div>
+            <div class="w3-third w3-container">
+                <h4>Check Appointment Availability:</h4>
+                <p style="text-align: justify;">Wondering when our next available appointment is? Our online appointment
+                    scheduler makes it easy to
+                    check appointment availability in real-time. Whether you need to see a doctor urgently or you're
+                    planning ahead for a routine check-up, you can view our current openings and select a time slot that
+                    fits your schedule. Our flexible scheduling options ensure that you can find a convenient
+                    appointment
+                    time that meets your needs.</p>
+            </div>
+            <div class="w3-third w3-container">
+                <h4>Appointment Reminders:</h4>
+                <p style="text-align: justify;">
+                    Never miss another appointment with our convenient reminder service. Sign up to receive text or
+                    email reminders for your upcoming appointments, so you can stay organized and prepared. Our
+                    automated reminders will alert you a few days before your appointment, as well as on the day of your
+                    visit, ensuring that you arrive on time and ready for your consultation. You can also choose to
+                    receive additional reminders for follow-up appointments or important healthcare milestones, helping
+                    you stay on track with your healthcare journey.</p>
+            </div>
+        </div>
     </div>
-    <footer class="w3-container w3-center w3-teal">
+    <footer class=" w3-container w3-center w3-teal">
         <p>Copyright MyClinic&copy</p>
     </footer>
 </body>
