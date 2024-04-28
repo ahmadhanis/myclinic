@@ -1,4 +1,4 @@
-function rememberMe(){
+function rememberMe() {
     var email = document.forms["loginForm"]["idemail"].value;
     var pass = document.forms["loginForm"]["idpass"].value;
     var rememberme = document.forms["loginForm"]["idremember"].checked;
@@ -8,7 +8,7 @@ function rememberMe(){
         setCookies("cremember", rememberme, 5);
         console.log("COOKIES:" + email, pass, rememberme);
         alert("Credential Stored");
-    }else{
+    } else {
         setCookies("cemail", "", 5);
         setCookies("cpass", "", 5);
         setCookies("cremember", rememberme, 5);
@@ -16,7 +16,12 @@ function rememberMe(){
         document.forms["loginForm"]["idpass"].value = "";
         document.forms["loginForm"]["idremember"].checked = false;
         console.log("COOKIES:" + email, pass, rememberme);
-        alert("Credential Removed");
+        if (email == "" && pass == "") {
+            alert("Please fill in email and password");
+        } else {
+            alert("Credential Removed");
+        }
+
     }
 }
 
@@ -26,22 +31,22 @@ function setCookies(cookiename, cookiedata, exdays) {
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
     document.cookie = cookiename + "=" + cookiedata + ";" + expires + ";path=/";
-  }
-  
-  function loadCookies(){
+}
+
+function loadCookies() {
     var email = getCookie("cemail");
     var password = getCookie("cpass");
     var rememberme = getCookie("cremember");
     document.forms["loginForm"]["idemail"].value = email;
     document.forms["loginForm"]["idpass"].value = password;
-    if (rememberme && email !="" || password != "") {
+    if (rememberme && email != "" || password != "") {
         document.forms["loginForm"]["idremember"].checked = true;
     } else {
         document.forms["loginForm"]["idremember"].checked = false;
     }
-  }
+}
 
-  function getCookie(cname) {
+function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -56,3 +61,4 @@ function setCookies(cookiename, cookiedata, exdays) {
     }
     return "";
 }
+
