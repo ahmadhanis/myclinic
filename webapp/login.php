@@ -9,13 +9,16 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $stmt->execute();
     $number_of_rows = $stmt->fetchColumn();
     if ($number_of_rows > 0) {
+        session_start();
+        $_SESSION["email"] = $email;
+        $_SESSION["password"] = $password;
         echo "<script>alert('Login Success')</script>";
+        echo "<script>window.location.href = 'index.php'</script>";
     }else{
         echo "<script>alert('Login Failed')</script>";
+        echo "<script>window.location.href = 'login.php'</script>";
     }
 }
-
-
 
 ?>
 
