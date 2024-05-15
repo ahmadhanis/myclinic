@@ -21,11 +21,25 @@ if (isset($_GET['button'])) {
     $sqlloadpatients = "SELECT * FROM `tbl_patients`";
 }
 
+$results_per_page = 10;
+if (isset($_GET['pageno'])) {
+    $pageno = (int)$_GET['pageno'];
+    $page_first_result = ($pageno - 1) * $results_per_page;
+} else {
+    $pageno = 1;
+    $page_first_result = 0;
+}
+
+$stmt = $conn->prepare($sqlloadpatients);
+$stmt->execute();
+$number_of_result = $stmt->rowCount();
+$number_of_page = ceil($number_of_result / $results_per_page);
+
+$sqlloadpatients = $sqlloadpatients . " LIMIT $page_first_result , $results_per_page";
 $stmt = $conn->prepare($sqlloadpatients);
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 $rows = $stmt->fetchAll();
-$number_of_result = $stmt->rowCount();
 
 ?>
 <!DOCTYPE html>
@@ -133,6 +147,15 @@ $number_of_result = $stmt->rowCount();
                 ?>
             </div>
         </div>
+    </div>
+    <div class="w3-container w3-row w3-center">
+        <?php
+            for ($page = 1; $page <= $number_of_page; $page++) {
+                echo '<a href = "index.php?pageno=' . $page . '" style=
+                "text-decoration: none">&nbsp&nbsp' . $page . ' </a>';
+            }
+            echo " ( " . $pageno . " )";
+        ?>
     </div>
     <footer class="w3-footer w3-center w3-blue-grey">
         <p>Clinic</p>
