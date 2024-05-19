@@ -65,6 +65,7 @@ $rows = $stmt->fetchAll();
     <div class="w3-bar w3-blue-gray">
         <a href="logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
         <a href="newpatient.php" class="w3-bar-item w3-button w3-left">New Patient</a>
+        <a href="" class="w3-bar-item w3-button w3-left" onclick="document.getElementById('id01').style.display='block';return false;">About</a>
     </div>
     <div style="min-height:100vh;overflow-y: auto;">
         <div class="w3-container w3-padding w3-hide-small">
@@ -88,8 +89,6 @@ $rows = $stmt->fetchAll();
                                 value="search">search</button>
                         </div>
                     </div>
-
-
                 </form>
             </div>
 
@@ -102,10 +101,9 @@ $rows = $stmt->fetchAll();
                         <th>Patient Email</th>
                         <th>Patient Name</th>
                         <th>Patient Phone</th>
-                        <th>Patient Address</th>
-                        <th>Patient Date Reg</th>
                         <th>Operations</th>
                     </tr>";
+                    $i = 0;
                     foreach ($rows as $patients) {
                         $patientId = $patients['patient_id'];
                         $patientIc = $patients['patient_ic'];
@@ -115,8 +113,39 @@ $rows = $stmt->fetchAll();
                         $patientAddress = $patients['patient_address'];
                         $patientDateReg = date_format(date_create($patients['patient_date_reg']),"d/m/Y H:i a");
                         echo "<tr><td>$patientId</td><td>$patientIc</td><td>$patientEmail</td><td>$patientName</td>
-                        <td>$patientPhone</td><td>$patientAddress</td><td>$patientDateReg</td>
-                        <td><a href=''><button>Delete</button></a><br><a href=''><button>&nbsp;Edit&nbsp;&nbsp;&nbsp; </button></a></td></tr>";
+                        <td>$patientPhone</td>";
+                        echo "<td><a href=''><button>Delete</button></a>&nbsp
+                        <a href=''><button>&nbsp;Edit&nbsp;&nbsp;&nbsp; </button></a>&nbsp
+                        <a href='' onclick=\"document.getElementById('id0$i').style.display='block';return false;\"><button>Details</button></a></td></tr>";
+                        // dynamic modal windows
+                        echo "<div class='w3-modal' id='id0$i'>
+    <div class='w3-modal-content w3-animate-opacity' style='min-width:40%'>
+        <header class='w3-container w3-teal w3-center'>
+            <p>$patientName</p>
+            <span onclick=\"document.getElementById('id0$i').style.display='none'\" class=\"w3-button w3-display-topright\">&times;</span>
+        </header>
+        <div class='w3-card w3-container w3-center'>
+            <div class='w3-container w3-row'>
+                <div class='w3-half'>
+                    <img src='assets/$patientId.png' onerror=\"this.onerror=null;this.src='assets/profile.png'\" style='max-width:300px'>
+                </div>
+                <div class='w3-half' style='text-align:left'>
+                    <h4>Patient Details</h4>
+                    <ul>
+                        <li><b>Patient ID: </b>$patientId</li>
+                        <li><b>Patient IC NO: </b>$patientIc</li>
+                        <li><b>Patient Email: </b>$patientEmail</li>
+                        <li><b>Patient Phone: </b>$patientPhone</li>
+                        <li><b>Patient Address: </b>$patientAddress</li>
+                        <li><b>Patient Reg Date: </b>$patientDateReg</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>";
+
+                        $i++;
                     }
                 }else{
                     echo "<h3>No result found</h3>";
@@ -127,6 +156,7 @@ $rows = $stmt->fetchAll();
         <div class="w3-container w3-padding w3-hide-large w3-hide-medium">
             <div class="w3-grid-template">
                 <?php
+                    $i = 0;
                     foreach ($rows as $patients) {
                         $patientId = $patients['patient_id'];
                         $patientIc = $patients['patient_ic'];
@@ -142,7 +172,6 @@ $rows = $stmt->fetchAll();
                         echo "<hr>";
                         echo "$patientIc<br>$patientPhone<br>$patientEmail<br>";
                         echo "</div></div>";
-                        
                     }
                 ?>
             </div>
@@ -161,7 +190,24 @@ $rows = $stmt->fetchAll();
         <p>Clinic</p>
     </footer>
 
-
+    <div class="w3-modal" id="id01" >
+        <div class="w3-modal-content w3-animate-opacity" style="width:30%">
+            <header class="w3-container w3-teal">
+                <p>About MyClinic</p>
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            </header>
+            <div class="w3-container">
+                <p>This web app is proprietray system own by MyClinic. No other part of the application can be use withour proper...</p>
+            </div>
+            <div class="w3-container w3-row">
+                <a href = "" class="w3-button w3-green">Ok</a>
+                <a href = "" class="w3-button w3-red">Cancel</a>
+            </div>
+            <footer>
+                <p class="w3-center">MyClinic</p>
+            </footer>
+        </div>
+    </div>
 </body>
 
 </html>
