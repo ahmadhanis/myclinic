@@ -5,6 +5,23 @@ if (!isset($_SESSION["email"]) && !isset($_SESSION["password"])) {
     echo "<script>window.location.href = 'login.php'</script>";
 }
 include('dbconnect.php');
+
+if (isset($_GET['submit'])) {
+    $operation = $_GET['submit'];
+    if ($operation == "delete") {
+        $id = $_GET['id'];
+        try{
+            $sqldeletepatient = "DELETE FROM `tbl_patients` WHERE `patient_id` = '$id'";
+            $conn->query($sqldeletepatient);
+            echo "<script>alert('Deleted..')</script>";
+            echo "<script>window.location.href = 'index.php'</script>";
+        }catch (PDOException $e) {
+            echo "<script>alert('Failed')</script>";
+            // echo $e->getMessage();
+        }
+    }  
+}
+
 if (isset($_GET['button'])) {
     $operation = $_GET['button'];
     if ($operation == 'search') {
@@ -21,7 +38,7 @@ if (isset($_GET['button'])) {
     $sqlloadpatients = "SELECT * FROM `tbl_patients`";
 }
 
-$results_per_page = 10;
+$results_per_page = 15;
 if (isset($_GET['pageno'])) {
     $pageno = (int)$_GET['pageno'];
     $page_first_result = ($pageno - 1) * $results_per_page;
@@ -65,7 +82,8 @@ $rows = $stmt->fetchAll();
     <div class="w3-bar w3-blue-gray">
         <a href="logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
         <a href="newpatient.php" class="w3-bar-item w3-button w3-left">New Patient</a>
-        <a href="" class="w3-bar-item w3-button w3-left" onclick="document.getElementById('id01').style.display='block';return false;">About</a>
+        <a href="" class="w3-bar-item w3-button w3-left"
+            onclick="document.getElementById('id01').style.display='block';return false;">About</a>
     </div>
     <div style="min-height:100vh;overflow-y: auto;">
         <div class="w3-container w3-padding w3-hide-small">
@@ -112,11 +130,10 @@ $rows = $stmt->fetchAll();
                         $patientPhone = $patients['patient_phone'];
                         $patientAddress = $patients['patient_address'];
                         $patientDateReg = date_format(date_create($patients['patient_date_reg']),"d/m/Y H:i a");
-                        echo "<tr><td>$patientId</td><td>$patientIc</td><td>$patientEmail</td><td>$patientName</td>
-                        <td>$patientPhone</td>";
-                        echo "<td><a href=''><button>Delete</button></a>&nbsp
-                        <a href=''><button>&nbsp;Edit&nbsp;&nbsp;&nbsp; </button></a>&nbsp
-                        <a href='' onclick=\"document.getElementById('id0$i').style.display='block';return false;\"><button>Details</button></a></td></tr>";
+                        echo "<tr><td>$patientId</td><td>$patientIc</td><td>$patientEmail</td><td>$patientName</td><td>$patientPhone</td>";
+                        echo "<td><a href='index.php?submit=delete&id=$patientId' onclick=\"return confirm('Are you sure?')\"><button>Delete</button></a>&nbsp";
+                        echo "<a href='editpatient.php?id=$patientId'><button>&nbsp;Edit&nbsp;&nbsp;&nbsp; </button></a>&nbsp";
+                        echo "<a href='' onclick=\"document.getElementById('id0$i').style.display='block';return false;\"><button>Details</button></a></td></tr>";
                         // dynamic modal windows
                         echo "<div class='w3-modal' id='id0$i'>
     <div class='w3-modal-content w3-animate-opacity' style='min-width:40%'>
@@ -190,18 +207,20 @@ $rows = $stmt->fetchAll();
         <p>Clinic</p>
     </footer>
 
-    <div class="w3-modal" id="id01" >
+    <div class="w3-modal" id="id01">
         <div class="w3-modal-content w3-animate-opacity" style="width:30%">
             <header class="w3-container w3-teal">
                 <p>About MyClinic</p>
-                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <span onclick="document.getElementById('id01').style.display='none'"
+                    class="w3-button w3-display-topright">&times;</span>
             </header>
             <div class="w3-container">
-                <p>This web app is proprietray system own by MyClinic. No other part of the application can be use withour proper...</p>
+                <p>This web app is proprietray system own by MyClinic. No other part of the application can be use
+                    withour proper...</p>
             </div>
             <div class="w3-container w3-row">
-                <a href = "" class="w3-button w3-green">Ok</a>
-                <a href = "" class="w3-button w3-red">Cancel</a>
+                <a href="" class="w3-button w3-green">Ok</a>
+                <a href="" class="w3-button w3-red">Cancel</a>
             </div>
             <footer>
                 <p class="w3-center">MyClinic</p>
